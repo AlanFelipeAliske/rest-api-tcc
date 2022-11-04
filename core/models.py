@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class AuthGroup(models.Model):
@@ -116,3 +117,7 @@ class Posts(models.Model):
     post_titulo = models.CharField(max_length=100)
     post_descricao = models.CharField(max_length=255)
     post_conteudo = models.CharField(max_length=255)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return 'Posts: {}'.format(self.post_titulo)

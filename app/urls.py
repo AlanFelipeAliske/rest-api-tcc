@@ -11,7 +11,6 @@ from rest_framework import routers, serializers, viewsets
 urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
-
     url(r'^api/token/', views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     url(r'^api/token/refresh/', views.TokenRefreshView.as_view(), name='token_refresh'),
 
@@ -22,4 +21,6 @@ urlpatterns = [
     url(r'^api/v1/posts$', views.PostLists.as_view(), name='api-posts'),
     url(r'^api/v1/posts/(?P<pk>[0-9]+)$', views.PostDetail.as_view(), name='api-posts'),
 
+
+    url(r'', RedirectView.as_view(url='/admin/')),
 ]

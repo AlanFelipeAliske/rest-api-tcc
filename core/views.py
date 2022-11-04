@@ -19,13 +19,10 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+""" 
 class PostsViewSet(viewsets.ModelViewSet):
     serializer_class = PostsSerializer
     queryset = Posts.objects.all()
-
-
-
-
 
 
 @api_view(['GET', 'POST', 'DELETE'])
@@ -77,8 +74,7 @@ def posts_detail(request, pk):
         tutorial.delete() 
         return JsonResponse({'message': 'Tutorial was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
-
-
+"""
 class PostLists(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
