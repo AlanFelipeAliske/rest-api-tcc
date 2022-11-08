@@ -73,7 +73,8 @@ class DjangoAdminLog(models.Model):
     object_id = models.TextField(blank=True, null=True)
     object_repr = models.CharField(max_length=200)
     change_message = models.TextField()
-    content_type = models.ForeignKey('DjangoContentType', models.DO_NOTHING, blank=True, null=True)
+    content_type = models.ForeignKey(
+        'DjangoContentType', models.DO_NOTHING, blank=True, null=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
     action_flag = models.PositiveSmallIntegerField()
 
@@ -111,13 +112,20 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
-# ---------- 
 
 class Posts(models.Model):
+    user = models.ForeignKey(User, default=1, null=True,
+                             on_delete=models.SET_NULL)
     post_titulo = models.CharField(max_length=100)
     post_descricao = models.CharField(max_length=255)
-    post_conteudo = models.CharField(max_length=255)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return 'Posts: {}'.format(self.post_titulo)
+    post_conteudo = models.TextField(max_length=255)
+
+
+class Perguntas(models.Model):
+    perguntas_descri = models.CharField(max_length=255)
+
+
+class Respostas(models.Model):
+    pergunta = models.ForeignKey(
+        Perguntas, default=1, null=True, on_delete=models.SET_NULL)
+    respostas_descri = models.CharField(max_length=255)
