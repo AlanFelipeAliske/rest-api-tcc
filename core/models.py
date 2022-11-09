@@ -123,7 +123,12 @@ class Posts(models.Model):
 class Perguntas(models.Model):
     perguntas_descri = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.perguntas_descri
 
 class Respostas(models.Model):
     pergunta = models.ForeignKey(Perguntas, null=True, on_delete=models.SET_NULL)
     respostas_descri = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.respostas_descri
