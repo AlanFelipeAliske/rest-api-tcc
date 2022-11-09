@@ -114,8 +114,7 @@ class DjangoSession(models.Model):
 
 
 class Posts(models.Model):
-    user = models.ForeignKey(User, default=1, null=True,
-                             on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     post_titulo = models.CharField(max_length=100)
     post_descricao = models.CharField(max_length=255)
     post_conteudo = models.TextField(max_length=255)
@@ -126,6 +125,5 @@ class Perguntas(models.Model):
 
 
 class Respostas(models.Model):
-    pergunta = models.ForeignKey(
-        Perguntas, default=1, null=True, on_delete=models.SET_NULL)
+    pergunta = models.ForeignKey(Perguntas, null=True, on_delete=models.SET_NULL)
     respostas_descri = models.CharField(max_length=255)
