@@ -135,14 +135,6 @@ class Respostas(models.Model):
 
 # --------------------
 
-class CorePerguntas(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    perguntas_descri = models.CharField(max_length=255)
-
-    class Meta:
-        managed = False
-        db_table = 'core_perguntas'
-
 
 class CorePosts(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -156,6 +148,18 @@ class CorePosts(models.Model):
         db_table = 'core_posts'
 
 
+class CorePerguntas(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    perguntas_descri = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'core_perguntas'
+
+    def __str__(self):
+        return self.perguntas_descri
+
+
 class CoreRespostas(models.Model):
     id = models.BigAutoField(primary_key=True)
     respostas_descri = models.CharField(max_length=255)
@@ -164,3 +168,6 @@ class CoreRespostas(models.Model):
     class Meta:
         managed = False
         db_table = 'core_respostas'
+    
+    def __str__(self):
+        return self.respostas_descri
