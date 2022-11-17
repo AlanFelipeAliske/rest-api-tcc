@@ -1,6 +1,6 @@
+
 from django.contrib import admin
 from core.models import Posts, Respostas, Perguntas
-
 
 class PostsAdmin(admin.ModelAdmin):
     list_display = ('post_titulo', 'post_descricao', 'post_conteudo',)

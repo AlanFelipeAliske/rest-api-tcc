@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
+''' 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -111,7 +111,7 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
-
+ '''
 
 class Posts(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)

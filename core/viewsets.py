@@ -1,3 +1,4 @@
+
 from core.serializers import PostsSerializer
 from rest_framework import viewsets, permissions
 from core.models import Posts
