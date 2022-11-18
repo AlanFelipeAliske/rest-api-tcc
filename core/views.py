@@ -1,10 +1,9 @@
-
+import re
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from collections import UserList
 from urllib import response
 from django.http import Http404, HttpResponse, JsonResponse
-from django.shortcuts import render
 from .serializers import PostsSerializer, PerguntasSerializer, RespostasSerializer
 from .models import Posts, Perguntas, Respostas
 from rest_framework import viewsets, status
@@ -14,7 +13,48 @@ from rest_framework.parsers import JSONParser
 from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
+
+def login_user(request):
+    return render(request, 'login.html')
+# ---------------------------------------------------------------------------------------------
+
+def submit_login(request):
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        usuario = authenticate(username=username, password=password)
+        if usuario is not None:
+            login(request, usuario)
+            return redirect('/inicio/')
+        else:
+            messages.error(request, 'Senha ou usuario invalidos')
+        return redirect('/')
+
+# ---------------------------------------------------------------------------------------------
+
+def logout_user(request):
+    logout(request)
+    return redirect('/')
+
+
+def inicio(request):
+    return render(request, 'inicio.html')
+
+
+def index(request):
+    return render(request, 'index.html')
+
+
+def relatorio(request):    
+    return render(request, 'relatorio.html')
+
+
+# --------------------------------------------------------------------------
 
 class PostLists(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
