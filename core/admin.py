@@ -1,7 +1,6 @@
 
 from django.contrib import admin 
 
-'''
 
 from core.models import CorePosts, CoreRespostas, CorePerguntas, CoreIdiomas
  
@@ -53,3 +52,5 @@ class IdiomasAdmin(admin.ModelAdmin):
     list_display = ('idiomas_descri',)
     list_filter = ('idiomas_descri',)
 admin.site.register(Idiomas, IdiomasAdmin)
+
+'''
