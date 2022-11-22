@@ -112,6 +112,8 @@ class CoreIdiomas(models.Model):
         managed = False
         db_table = 'core_idiomas'
 
+    def __str__(self):
+        return self.idiomas_descri
 
 class CorePerguntas(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -122,6 +124,8 @@ class CorePerguntas(models.Model):
         managed = False
         db_table = 'core_perguntas'
 
+    def __str__(self):
+        return self.perguntas_descri
 
 class CorePosts(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -134,7 +138,9 @@ class CorePosts(models.Model):
     class Meta:
         managed = False
         db_table = 'core_posts'
-
+        
+    def __str__(self):
+        return self.post_titulo
 
 class CoreRespostas(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -146,6 +152,8 @@ class CoreRespostas(models.Model):
         managed = False
         db_table = 'core_respostas'
 
+    def __str__(self):
+        return self.respostas_descri
 
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
