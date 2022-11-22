@@ -112,15 +112,22 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
+class Idiomas(models.Model):
+    idiomas_descri = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.idiomas_descri
 
 class Posts(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    idioma = models.ForeignKey(Idiomas, null=True, on_delete=models.SET_NULL)
     post_titulo = models.CharField(max_length=100)
     post_descricao = models.CharField(max_length=255)
     post_conteudo = models.TextField(max_length=255)
 
 
 class Perguntas(models.Model):
+    idioma = models.ForeignKey(Idiomas, null=True, on_delete=models.SET_NULL)
     perguntas_descri = models.CharField(max_length=255)
 
     def __str__(self):
@@ -128,46 +135,10 @@ class Perguntas(models.Model):
 
 class Respostas(models.Model):
     pergunta = models.ForeignKey(Perguntas, null=True, on_delete=models.SET_NULL)
+    idioma = models.ForeignKey(Idiomas, null=True, on_delete=models.SET_NULL)
     respostas_descri = models.CharField(max_length=255)
     
     def __str__(self):
         return self.respostas_descri
 
 # --------------------
-
-
-class CorePosts(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    post_titulo = models.CharField(max_length=100)
-    post_descricao = models.CharField(max_length=255)
-    post_conteudo = models.TextField()
-    user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'core_posts'
-
-
-class CorePerguntas(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    perguntas_descri = models.CharField(max_length=255)
-
-    class Meta:
-        managed = False
-        db_table = 'core_perguntas'
-
-    def __str__(self):
-        return self.perguntas_descri
-
-
-class CoreRespostas(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    respostas_descri = models.CharField(max_length=255)
-    pergunta = models.ForeignKey(CorePerguntas, models.DO_NOTHING, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'core_respostas'
-    
-    def __str__(self):
-        return self.respostas_descri
