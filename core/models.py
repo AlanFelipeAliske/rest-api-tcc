@@ -114,9 +114,7 @@ class DjangoSession(models.Model):
 
 class Idiomas(models.Model):
     idiomas_descri = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return self.idiomas_descri
+
 
 class Posts(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
@@ -130,15 +128,14 @@ class Perguntas(models.Model):
     idioma = models.ForeignKey(Idiomas, null=True, on_delete=models.SET_NULL)
     perguntas_descri = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.perguntas_descri
 
 class Respostas(models.Model):
     pergunta = models.ForeignKey(Perguntas, null=True, on_delete=models.SET_NULL)
     idioma = models.ForeignKey(Idiomas, null=True, on_delete=models.SET_NULL)
     respostas_descri = models.CharField(max_length=255)
-    
+
+'''     
     def __str__(self):
         return self.respostas_descri
-
+ '''
 # --------------------
