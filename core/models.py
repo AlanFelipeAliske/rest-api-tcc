@@ -122,7 +122,7 @@ class CorePosts(models.Model):
     post_titulo = models.CharField(max_length=100)
     post_descricao = models.CharField(max_length=255)
     post_conteudo = models.TextField()
-    imagem = models.CharField(max_length=100)
+    imagem = models.ImageField()
     idioma = models.ForeignKey(CoreIdiomas, models.DO_NOTHING, blank=True, null=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING, blank=True, null=True)
 
