@@ -11,6 +11,7 @@ class Posts(models.Model):
     post_titulo = models.CharField(max_length=100)
     post_descricao = models.CharField(max_length=255)
     post_conteudo = models.TextField(max_length=255)
+    imagem = models.ImageField()
 
 
 class Perguntas(models.Model):
@@ -31,7 +32,6 @@ class Respostas(models.Model):
 '''     
     def __str__(self):
         return self.respostas_descri
-'''
 
 
 
@@ -198,3 +198,6 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+
+'''
