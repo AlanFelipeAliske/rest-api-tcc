@@ -34,6 +34,8 @@ urlpatterns = [
 
     url(r'^api/v1/respostas$', views.RespostasLists.as_view(), name='api-respostas'),
     url(r'^api/v1/respostas/(?P<pk>[0-9]+)$', views.RespostasDetail.as_view(), name='api-respostas'),
+    
+    url(r'^media/(?P<pk>[0-9]+)$', views.ImageDetail.as_view(), name='api-image'),
 
     path('', RedirectView.as_view(url='/login/')),
 ]
