@@ -5,7 +5,7 @@ from collections import UserList
 from urllib import response
 from django.http import Http404, HttpResponse, JsonResponse
 from .serializers import PostsSerializer, PerguntasSerializer, RespostasSerializer
-from .models import Posts, Perguntas, Respostas
+from .models import CorePosts, CorePerguntas, CoreRespostas
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -61,7 +61,7 @@ class PostLists(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        snippets = Posts.objects.all()
+        snippets = CorePosts.objects.all()
         serializer = PostsSerializer(snippets, many=True)
         return Response(serializer.data)
 
@@ -79,8 +79,8 @@ class PostDetail(APIView):
 
     def get_object(self, pk):
         try:
-            return Posts.objects.get(pk=pk)
-        except Posts.DoesNotExist:
+            return CorePosts.objects.get(pk=pk)
+        except CorePosts.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):
@@ -109,7 +109,7 @@ class PerguntasLists(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        snippets = Perguntas.objects.all()
+        snippets = CorePerguntas.objects.all()
         serializer = PerguntasSerializer(snippets, many=True)
         return Response(serializer.data)
 
@@ -127,8 +127,8 @@ class PerguntasDetail(APIView):
 
     def get_object(self, pk):
         try:
-            return Perguntas.objects.get(pk=pk)
-        except Perguntas.DoesNotExist:
+            return CorePerguntas.objects.get(pk=pk)
+        except CorePerguntas.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):
@@ -157,7 +157,7 @@ class RespostasLists(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        snippets = Respostas.objects.all()
+        snippets = CoreRespostas.objects.all()
         serializer = RespostasSerializer(snippets, many=True)
         return Response(serializer.data)
 
@@ -175,8 +175,8 @@ class RespostasDetail(APIView):
 
     def get_object(self, pk):
         try:
-            return Respostas.objects.get(pk=pk)
-        except Respostas.DoesNotExist:
+            return CoreRespostas.objects.get(pk=pk)
+        except CoreRespostas.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):
