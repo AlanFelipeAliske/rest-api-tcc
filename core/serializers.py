@@ -1,6 +1,5 @@
 
 from rest_framework import serializers
-"""
 from .models import Posts, Perguntas, Respostas
 
 class PostsSerializer(serializers.ModelSerializer):
@@ -46,3 +45,4 @@ class RespostasSerializer(serializers.ModelSerializer):
     class Meta:
         model = CoreRespostas
         fields = '__all__'
+"""

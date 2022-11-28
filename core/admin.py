@@ -1,29 +1,30 @@
 from django.contrib import admin 
 
 
-from core.models import CorePosts, CoreRespostas, CorePerguntas, CoreIdiomas
+from core.models import Posts, Respostas, Perguntas, Idiomas
+
  
-class CorePostsAdmin(admin.ModelAdmin):
+class PostsAdmin(admin.ModelAdmin):
     list_display = ('post_titulo', 'post_descricao', 'post_conteudo',)
     list_filter = ('post_titulo', 'post_descricao', 'post_conteudo',)
-admin.site.register(CorePosts, CorePostsAdmin)
+admin.site.register(Posts, PostsAdmin)
 
 
-class CoreRespostasAdmin(admin.ModelAdmin):
+class RespostasAdmin(admin.ModelAdmin):
     list_display = ('nome', 'pais_de_origem', )
     list_filter = ('nome','pais_de_origem', )
-admin.site.register(CoreRespostas, CoreRespostasAdmin)
+admin.site.register(Respostas, RespostasAdmin)
 
 
-class CorePerguntasAdmin(admin.ModelAdmin):
+class PerguntasAdmin(admin.ModelAdmin):
     list_display = ('perguntas_descri',)
     list_filter = ('perguntas_descri',)
-admin.site.register(CorePerguntas, CorePerguntasAdmin)
+admin.site.register(Perguntas, PerguntasAdmin)
 
-class CoreIdiomasAdmin(admin.ModelAdmin):
+class IdiomasAdmin(admin.ModelAdmin):
     list_display = ('idiomas_descri',)
     list_filter = ('idiomas_descri',)
-admin.site.register(CoreIdiomas, CoreIdiomasAdmin)
+admin.site.register(Idiomas, IdiomasAdmin)
 
 
 '''
