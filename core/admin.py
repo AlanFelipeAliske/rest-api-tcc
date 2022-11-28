@@ -10,8 +10,8 @@ admin.site.register(CorePosts, CorePostsAdmin)
 
 
 class CoreRespostasAdmin(admin.ModelAdmin):
-    list_display = ('respostas_descri',)
-    list_filter = ('respostas_descri',)
+    list_display = ('nome', 'pais_de_origem', )
+    list_filter = ('nome','pais_de_origem', )
 admin.site.register(CoreRespostas, CoreRespostasAdmin)
 
 
