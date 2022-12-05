@@ -29,9 +29,6 @@ urlpatterns = [
     url(r'^api/v1/posts$', views.PostLists.as_view(), name='api-posts'),
     url(r'^api/v1/posts/(?P<pk>[0-9]+)$', views.PostDetail.as_view(), name='api-posts'),
 
-    url(r'^api/v1/perguntas$', views.PerguntasLists.as_view(), name='api-perguntas'),
-    url(r'^api/v1/perguntas/(?P<pk>[0-9]+)$', views.PerguntasDetail.as_view(), name='api-perguntas'),
-
     url(r'^api/v1/respostas$', views.RespostasLists.as_view(), name='api-respostas'),
     url(r'^api/v1/respostas/(?P<pk>[0-9]+)$', views.RespostasDetail.as_view(), name='api-respostas'),
     

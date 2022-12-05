@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import Posts, Perguntas, Respostas
+from .models import Posts, Respostas
 
 class PostsSerializer(serializers.ModelSerializer):
 
@@ -8,41 +8,8 @@ class PostsSerializer(serializers.ModelSerializer):
         model = Posts
         fields = '__all__'
 
-
-class PerguntasSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = Perguntas
-        fields = '__all__'
-
-
 class RespostasSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Respostas
         fields = '__all__'
-
-"""
-
-from .models import CorePosts, CorePerguntas, CoreRespostas
-
-class PostsSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = CorePosts
-        fields = '__all__'
-
-
-class PerguntasSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = CorePerguntas
-        fields = '__all__'
-
-
-class RespostasSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = CoreRespostas
-        fields = '__all__'
-"""
