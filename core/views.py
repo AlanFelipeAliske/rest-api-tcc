@@ -100,7 +100,7 @@ def relatorio(request):
 
     for nome in sql_esta_empregado:
         
-        cnv.drawString(x, y, nome.contador)
+        cnv.drawString(x, y, nome.esta_empregado)
         y -= 15
 
     cnv.save()
