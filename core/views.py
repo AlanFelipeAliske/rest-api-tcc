@@ -110,6 +110,10 @@ def relatorio(request):
     return render(request, 'relatorio.html', response)
 
 
+def relatoriopdf(request):
+    return render(request, 'relatorio.pdf')
+
+
 class PostLists(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
