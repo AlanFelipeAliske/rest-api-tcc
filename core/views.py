@@ -18,8 +18,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
+#from reportlab.pdfgen import canvas
+#from reportlab.lib.pagesizes import A4
 
 
 def login_user(request):
@@ -33,7 +33,7 @@ def submit_login(request):
         usuario = authenticate(username=username, password=password)
         if usuario is not None:
             login(request, usuario)
-            return redirect('/inicio/')
+            return redirect('/relatorio/')
         else:
             messages.error(request, 'Senha ou usuario invalidos')
         return redirect('/')
@@ -52,11 +52,9 @@ def inicio(request):
 def index(request):
     return render(request, 'index.html')
 
-
+@login_required(login_url='/login/')
 def relatorio(request):
-
     var = Respostas.objects.all()
-
     sql_pais_de_origem = Respostas.objects.raw(
         ''' SELECT MAX (id) as id, 
             pais_de_origem,
@@ -91,21 +89,6 @@ def relatorio(request):
         'sql_tempo_no_brasils': sql_tempo_no_brasil,
         'sql_esta_empregados': sql_esta_empregado
     }
-
-
-    cnv = canvas.Canvas("relatorio.pdf", pagesize=A4)
-
-    y = 750
-    x = 100
-
-    for nome in sql_esta_empregado:
-        
-        cnv.drawString(x, y, nome.esta_empregado)
-        y -= 15
-
-    cnv.save()
-
-
 
     return render(request, 'relatorio.html', response)
 

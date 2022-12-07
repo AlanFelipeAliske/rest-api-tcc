@@ -22,8 +22,6 @@ urlpatterns = [
     path('index/', views.index, name='index'),
     path('inicio/', views.inicio, name='inicio'),
     path('relatorio/', views.relatorio, name='relatorio'),
-    path('rest-api-tcc/relatorio.pdf', views.relatoriopdf, name='relatorio-pdf'),
-
 
     # Restframework
     url(r'^api/token/', views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
