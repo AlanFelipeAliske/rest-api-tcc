@@ -18,6 +18,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+
 
 def login_user(request):
     return render(request, 'login.html')
@@ -50,8 +53,62 @@ def index(request):
     return render(request, 'index.html')
 
 
-def relatorio(request):    
-    return render(request, 'relatorio.html')
+def relatorio(request):
+
+    var = Respostas.objects.all()
+
+    sql_pais_de_origem = Respostas.objects.raw(
+        ''' SELECT MAX (id) as id, 
+            pais_de_origem,
+            count (*) as contador
+            from core_respostas
+            group by pais_de_origem 
+            order by pais_de_origem '''
+    )
+
+    sql_tempo_no_brasil = Respostas.objects.raw(
+        ''' SELECT MAX (id) as id, 
+            tempo_no_brasil,
+            count (*) as contador
+            from core_respostas
+            group by tempo_no_brasil 
+            order by tempo_no_brasil '''
+    )
+
+    sql_esta_empregado = Respostas.objects.raw(
+        ''' SELECT MAX (id) as id, 
+            esta_empregado,
+            count (*) as contador
+            from core_respostas
+            group by esta_empregado 
+            order by esta_empregado '''
+    )
+
+
+    response = {
+        'vars': var, 
+        'sql_pais_de_origems': sql_pais_de_origem, 
+        'sql_tempo_no_brasils': sql_tempo_no_brasil,
+        'sql_esta_empregados': sql_esta_empregado
+    }
+
+
+    cnv = canvas.Canvas("relatorio.pdf", pagesize=A4)
+
+    y = 750
+    x = 100
+
+    for nome in sql_esta_empregado:
+        
+        cnv.drawString(x, y, nome.contador)
+        y -= 15
+
+    cnv.save()
+
+
+
+    return render(request, 'relatorio.html', response)
+
 
 class PostLists(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]

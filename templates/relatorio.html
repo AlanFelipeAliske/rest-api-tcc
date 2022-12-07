@@ -7,15 +7,67 @@
   <table class="table table-bordered mt-4">
     <thead class="thead-light">
       <tr>
-        <th scope="col">Nome</th>
+        <th scope="col">País de origem</th>
+        <th scope="col">Tempo no Brasil</th>
+        <th scope="col">Está empregado</th>
+        <th scope="col">Dificuldades </th>
       </tr>
     </thead>
     <tbody>
+      {% for var in vars %}
       <tr>
-        <td>{{username}}</td>
+        <td>{{var.pais_de_origem}}</td>
+        <td>{{var.tempo_no_brasil}}</td>
+        <td>{{var.esta_empregado}}</td>
+        <td>{{var.dificuldade_imigrante}}</td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
+
+  <table class="table table-bordered mt-4">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Países e seus imigrantes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sql_pais_de_origem in sql_pais_de_origems %}
+      <tr>
+        <td>{{sql_pais_de_origem.pais_de_origem}} - {{sql_pais_de_origem.contador}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <table class="table table-bordered mt-4">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Tempo que os imigrantes estão no Brasil</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sql_tempo_no_brasil in sql_tempo_no_brasils %}
+      <tr>
+        <td>{{sql_tempo_no_brasil.tempo_no_brasil}} anos - {{sql_tempo_no_brasil.contador}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <table class="table table-bordered mt-4">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Imigrantes empregados</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sql_esta_empregado in sql_esta_empregados %}
+      <tr>
+        <td>{{sql_esta_empregado.esta_empregado}} - {{sql_esta_empregado.contador}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
 </div>
 
 {% endblock %}

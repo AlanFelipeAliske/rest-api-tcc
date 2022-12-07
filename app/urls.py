@@ -2,6 +2,8 @@
 from unicodedata import name
 from django.urls import re_path as url
 from core import views
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import RedirectView
@@ -20,6 +22,7 @@ urlpatterns = [
     path('index/', views.index, name='index'),
     path('inicio/', views.inicio, name='inicio'),
     path('relatorio/', views.relatorio, name='relatorio'),
+    path('rest-api-tcc/relatorio.pdf', views.relatorio, name='relatorio-pdf'),
 
 
     # Restframework
@@ -35,4 +38,4 @@ urlpatterns = [
     url(r'^media/(?P<pk>[0-9]+)$', views.ImageDetail.as_view(), name='api-image'),
 
     path('', RedirectView.as_view(url='/login/')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
